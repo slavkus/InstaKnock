@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %}Insta Knock{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% for element in posts %}
+            <div class="col-sm-6 col-md-3">
+                <div class="card my-4">
+                    {% thumbnail element.image "200x200" crop="center" as im %}
+                        <!-- building this from urls.py, access app_name then name from one of the urls -->
+                        <img src="{{ im.url }}" class="card-img-top" alt="Image">
+                    {% endthumbnail %}
+                    <div class="card-body">
+                        <p class="card-text">{{ element.text }}</p>
+                        <a href="{% url 'feed:detail' element.id %}" class="btn btn-primary">View Full Image</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

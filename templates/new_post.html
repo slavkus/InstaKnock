@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Upload a new image{% endblock %}
+
+{% block content %}
+    <form method="POST" action="" enctype="multipart/form-data" class="col-sm-4 offset-4 py-5 my-5">    <!-- action="" for self, enctype for uploading images/files -->
+        <h2>Upload an image!</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+            <button type="submit" class="btn btn-lg btn-success">Submit Form</button> <!-- On submit, success_url from view (index in this case) -->
+        </div>
+    </form>
+{% endblock %}
